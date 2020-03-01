@@ -11,6 +11,12 @@ from sklearn.decomposition import NMF
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 df_input_name = get_input_names_for_role('input')[0]
+print("***************************")
+print("***************************")
+print("***************************")
+print("***************************")
+print("***************************")
+print(df_input_name)
 ds = dataiku.Dataset(df_input_name)
 df = ds.get_dataframe().iloc[0:100]
 
