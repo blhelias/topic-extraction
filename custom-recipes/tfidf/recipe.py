@@ -18,7 +18,7 @@ df = ds.get_dataframe().iloc[0:10000]
 COLUMN_NAME = get_recipe_config()['column']
 NB_TOPIC = int(get_recipe_config()['n_topic'])
 NB_WORD_BY_TOPIC = int(get_recipe_config()['top_word'])
-MAX_DF=0.5
+MAX_DF=float(get_recipe_config()['max_df'])
 
 assert COLUMN_NAME in df.columns
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: MARKDOWN
