@@ -14,7 +14,8 @@ df_input_name = get_input_names_for_role('input')[0]
 ds = dataiku.Dataset(df_input_name)
 df = ds.get_dataframe().iloc[0:100]
 
-COLUMN_NAME = get_recipe_config()['column']
+DESCRIPTION_COL = get_recipe_config()['description']
+PRODUCT_COL = get_recipe_config()['product']
 NB_TOPIC = int(get_recipe_config()['n_topic'])
 NB_WORD_BY_TOPIC = int(get_recipe_config()['top_word'])
 MAX_DF=float(get_recipe_config()['max_df'])
@@ -27,24 +28,24 @@ MAX_DF=float(get_recipe_config()['max_df'])
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 
-df[COLUMN_NAME] = df[COLUMN_NAME].fillna(' ')
-df[COLUMN_NAME] = df[COLUMN_NAME].apply(lambda x: str(x))
+df[DESCRIPTION_COL] = df[DESCRIPTION_COL].fillna(' ')
 
-corpus = df[COLUMN_NAME] 
+corpus = df[DESCRIPTION_COL] 
 
-
-tfidf_vectorizer = TfidfVectorizer(max_df=MAX_DF, strip_accents="unicode")#, decode_error="ignore")
+tfidf_vectorizer = TfidfVectorizer(max_df=MAX_DF)
 tfidf = tfidf_vectorizer.fit_transform(corpus)
-# Pourquoi?
 description_features = tfidf_vectorizer.inverse_transform(tfidf)
 features_list = tfidf_vectorizer.get_feature_names()
-# description_features
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: MARKDOWN
 # <b style="color:orange"> TODO comprendre</b>
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
-df_product_word = pd.DataFrame(tfidf.toarray(), index=df['variety'], columns=features_list)
+df_product_word = pd.DataFrame(
+    tfidf.toarray(), 
+    index=df[PRODUCT_COL], 
+    columns=features_list
+)
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 def build_topic_mapper(model, feature_names, n_top_words):
