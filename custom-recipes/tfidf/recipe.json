@@ -18,7 +18,7 @@
     // The "arity" field indicates whether the user can associate several datasets to the role ('NARY')
     // or at most one ('UNARY'). The "required" field indicates whether the user is allowed to
     // associate no dataset with the role.
-        "inputRoles" : [
+    "inputRoles" : [
         {
             "name": "input",
             "label": "Input dataset",
