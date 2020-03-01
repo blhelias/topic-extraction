@@ -50,11 +50,20 @@
 
     "params": [
         {
-            "name": "column",
+            "name": "description",
             "label": "Description column",
             "type": "COLUMN",
             "description": "Column containing wine description",
             "default_value": "descrition",
+            "mandatory": true,
+            "columnRole": "input"
+        },
+        {
+            "name": "product",
+            "label": "Product column",
+            "type": "COLUMN",
+            "description": "Column containing product name",
+            "default_value": "product",
             "mandatory": true,
             "columnRole": "input"
         },
