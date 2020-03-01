@@ -54,7 +54,7 @@
             "name": "column",
             "label": "Description column",
             "type": "COLUMN",
-            "description": "The column containing wine description",
+            "description": "Column containing wine description",
             "default_value": "descrition",
             "mandatory": true,
             "columnRole": "input"
@@ -71,7 +71,7 @@
             "name": "top_word",
             "label": "Top word in a topic",
             "type": "INT",
-            "description": "set the number of words in a topic",
+            "description": "Set the number of words in a topic",
             "default_value": 3,
             "mandatory": true
         },
@@ -81,7 +81,7 @@
             "name": "max_df",
             "type": "SELECT",
             "label": "max_df",
-            "description": "Remove termes that appear too frequently",
+            "description": "Remove terms that appear too frequently",
             "selectChoices": [
                 {
                     "value": 0.5,
