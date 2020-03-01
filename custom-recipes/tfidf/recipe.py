@@ -11,14 +11,9 @@ from sklearn.decomposition import NMF
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 df_input_name = get_input_names_for_role('input')[0]
-print("***************************")
-print("***************************")
-print("***************************")
-print("***************************")
-print("***************************")
-print(df_input_name)
+
 ds = dataiku.Dataset(df_input_name)
-print(ds)
+
 df = ds.get_dataframe().iloc[0:100]
 
 
@@ -26,8 +21,6 @@ COLUMN_NAME = get_recipe_config()['column']
 NB_TOPIC = int(get_recipe_config()['n_topic'])
 NB_WORD_BY_TOPIC = int(get_recipe_config()['top_word'])
 MAX_DF=float(get_recipe_config()['max_df'])
-
-assert COLUMN_NAME in df.columns
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: MARKDOWN
 # ## INPUT DATASET
 # <b style="color:orange;"> TODO checker pourquoi le dataset entier crash...</b>
