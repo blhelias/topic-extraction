@@ -18,6 +18,7 @@ print("***************************")
 print("***************************")
 print(df_input_name)
 ds = dataiku.Dataset(df_input_name)
+print(ds)
 df = ds.get_dataframe().iloc[0:100]
 
 
