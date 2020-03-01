@@ -1,0 +1,115 @@
+// This file is the descriptor for the Custom code recipe tfidf
+{
+    // Meta data for display purposes
+    "meta": {
+        // label: name of the recipe as displayed, should be short
+        "label": "enrich_with_topics",
+        // description: longer string to help end users understand what this recipe does
+        "description": "Entrich descritption with topics extracted",
+        // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
+        "icon": "icon-puzzle-piece"
+    },
+
+    "kind": "PYTHON",
+    
+
+    // Inputs and outputs are defined by roles. In the recipe's I/O tab, the user can associate one
+    // or more dataset to each input and output role.
+
+    // The "arity" field indicates whether the user can associate several datasets to the role ('NARY')
+    // or at most one ('UNARY'). The "required" field indicates whether the user is allowed to
+    // associate no dataset with the role.
+        "inputRoles" : [
+        {
+            "name": "input",
+            "label": "Input dataset",
+            "description": "The dataset containing wine description",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+    ],
+    "outputRoles": [
+        {
+            "name": "main_output",
+            "label": "main output displayed name",
+            "description": "what main output means",
+            "arity": "UNARY",
+            "required": false,
+            "acceptsDataset": true
+        }
+    ],
+
+    /* The field "params" holds a list of all the params
+       for wich the user will be prompted for values in the Settings tab of the recipe.
+
+       The available parameter types include:
+       STRING, STRINGS, INT, DOUBLE, BOOLEAN, SELECT, MULTISELECT, MAP, TEXTAREA, PRESET, COLUMN, COLUMN
+
+       For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
+    */
+
+    "params": [
+        {
+            "name": "column",
+            "label": "Description column",
+            "type": "COLUMN",
+            "description": "The column containing wine description",
+            "default_value": "descrition",
+            "mandatory": true,
+            "columnRole": "input"
+        },
+        {
+            "name": "n_topic",
+            "label": "Number of topics",
+            "type": "INT",
+            "description": "Set the number of topics",
+            "default_value": 10,
+            "mandatory": true
+        },
+        {
+            "name": "top_word",
+            "label": "Top word in a topic",
+            "type": "INT",
+            "description": "set the number of words in a topic",
+            "default_value": 3,
+            "mandatory": true
+        },
+
+        // A "SELECT" parameter is a multi-choice selector. Choices are specified using the selectChoice field
+        {
+            "name": "max_df",
+            "type": "SELECT",
+            "label": "max_df",
+            "description": "Remove termes that appear too frequently",
+            "selectChoices": [
+                {
+                    "value": 0.5,
+                    "label": "0.5"
+                },
+                {
+                    "value": 0.7,
+                    "label": "0.7"
+                },
+                {
+                    "value": 0.8,
+                    "label": "0.8"
+                },
+                {
+                    "value": 0.9,
+                    "label": "0.9"
+                }
+            ]
+        }
+        // The 'COLUMNS' type works in the same way, except that it is a list of strings.
+    ],
+
+    // The field "resourceKeys" holds a list of keys that allows to limit the number
+    // of concurrent executions and activities triggered by this recipe.
+    //
+    // Administrators can configure the limit per resource key in the Administration > Settings > Flow build
+    // screen.
+
+    "resourceKeys": []
+
+}
