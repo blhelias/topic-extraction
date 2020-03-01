@@ -58,9 +58,7 @@ def build_topic_mapper(model, feature_names, n_top_words):
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 nmf = NMF(n_components=NB_TOPIC, random_state=1).fit(tfidf)
-
 tfidf_feature_names = tfidf_vectorizer.get_feature_names()
-
 topic_map = build_topic_mapper(nmf, tfidf_feature_names, NB_WORD_BY_TOPIC)
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
