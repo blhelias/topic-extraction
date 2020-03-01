@@ -12,7 +12,7 @@ from sklearn.decomposition import NMF
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 df_input_name = get_input_names_for_role('input')[0]
 ds = dataiku.Dataset(df_input_name)
-df = ds.get_dataframe().iloc[0:10000]
+df = ds.get_dataframe().iloc[0:100]
 
 
 COLUMN_NAME = get_recipe_config()['column']
