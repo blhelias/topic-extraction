@@ -16,13 +16,13 @@
         "author": "Brieuc LHelias",
 
         // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
-        "icon": "icon-puzzle-piece",
+        "icon": "icon-glass",
 
         // List of tags for filtering the list of plugins
         "tags": ["Machine Learning", "NLP"], //for example: ["Machine Learning", "NLP"]
 
         // URL where the user can learn more about the plugin
-        "url": "https://www.google.com",
+        "url": "https://www.github.com/",
 
         "licenseInfo": "Apache Software License"
     }
