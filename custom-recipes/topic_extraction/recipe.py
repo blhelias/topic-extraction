@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 import dataiku
 from dataiku.customrecipe import *
 
@@ -8,6 +9,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF
 
 from utils.preprocessing_utils import clean_text, build_topic_mapper
+
+
+logging.basicConfig(format='[PLUGIN RECIPE LOG] %(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+logger.info("*** Starting recipe ***")
 
 ## PARAMETRES
 DESCRIPTION_COL = get_recipe_config()['description']
@@ -23,7 +31,7 @@ df = ds.get_dataframe().iloc[0:100]
 
 ## Creation du corpus
 df[DESCRIPTION_COL] = df[DESCRIPTION_COL].fillna(' ')
-corpus = df[DESCRIPTION_COL]
+corpus = df[DESCRIPTION_COL].apply(lambda s: clean_text(str(s)).decode('utf-8')).values
 
 ## TFIDF
 tfidf_vectorizer = TfidfVectorizer(max_df=MAX_DF)
