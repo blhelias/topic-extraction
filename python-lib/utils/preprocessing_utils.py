@@ -18,11 +18,18 @@ TOKENS_TO_IGNORE = [
     RE_EMAIL
 ]
 
+def build_topic_mapper(model, feature_names, n_top_words):
+    topic_mapper = {}
+
+    for topic_idx, topic in enumerate(model.components_):
+        topic_mapper[topic_idx] = ", ".join([feature_names[i]
+                        for i in topic.argsort()[:-n_top_words - 1:-1]])
+    return topic_mapper
 
 def clean_text(text):
     """
     Applies some pre-processing to clean text data.
-    
+
     In particular:
     - lowers the string
     - removes URLs, e-mail adresses
@@ -41,7 +48,7 @@ def clean_text(text):
     text = re.sub(r'<[^>]*>', ' ', text)  # remove HTML tags if any
 
     # remove the character [']
-    text = re.sub(r"\'", "", text)    
+    text = re.sub(r"\'", "", text)
 
     # this is the default cleaning in Keras,
     # it consists in lowering the texts and removing the punctuation
@@ -58,5 +65,5 @@ def clean_text(text):
     else:
         for c in filters:
             text = text.replace(c, split)
-        
+
     return text
